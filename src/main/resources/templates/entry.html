@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allow Entry</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Entry Authorization</h1>
+        <nav><a th:href="@{/}">Home</a></nav>
+    </header>
+
+    <section class="card">
+        <div th:if="${success}" class="alert success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Visit ID</th>
+                <th>Visitor</th>
+                <th>Student</th>
+                <th>Guard</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="visit : ${approvedVisits}">
+                <td th:text="${visit.visitId}"></td>
+                <td th:text="${visit.visitor.name}"></td>
+                <td th:text="${visit.student.name}"></td>
+                <td th:text="${visit.guard.name}"></td>
+                <td th:text="${visit.status}"></td>
+                <td>
+                    <form th:action="@{'/entry/' + ${visit.visitId} + '/allow'}" method="post">
+                        <button class="ok" type="submit">Allow Entry</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Visit</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Visitor Registration</h1>
+        <nav><a th:href="@{/}">Home</a></nav>
+    </header>
+
+    <section class="card">
+        <div th:if="${success}" class="alert success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+        <form th:action="@{/request}" th:object="${form}" method="post">
+            <div class="form-grid">
+                <div>
+                    <label>Visitor Name</label>
+                    <input type="text" th:field="*{visitorName}" required>
+                </div>
+                <div>
+                    <label>Visitor Phone</label>
+                    <input type="text" th:field="*{visitorPhone}" required>
+                </div>
+                <div>
+                    <label>Purpose</label>
+                    <input type="text" th:field="*{purpose}" required>
+                </div>
+                <div>
+                    <label>Student Room</label>
+                    <select th:field="*{studentRoomNo}" required>
+                        <option value="">Select room</option>
+                        <option th:each="s : ${students}" th:value="${s.roomNo}" th:text="${s.roomNo} + ' - ' + ${s.name}"></option>
+                    </select>
+                </div>
+                <div>
+                    <label>ID Type</label>
+                    <select th:field="*{idType}" required>
+                        <option value="">Select ID type</option>
+                        <option th:each="type : ${idTypes}" th:value="${type}" th:text="${type}"></option>
+                    </select>
+                </div>
+                <div>
+                    <label>ID Number</label>
+                    <input type="text" th:field="*{idNumber}" required>
+                </div>
+                <div>
+                    <label>Security Guard</label>
+                    <select th:field="*{guardId}" required>
+                        <option value="">Select guard</option>
+                        <option th:each="g : ${guards}" th:value="${g.guardId}" th:text="${g.name} + ' (' + ${g.badgeNo} + ')' "></option>
+                    </select>
+                </div>
+            </div>
+            <p style="margin-top:12px;">
+                Aadhaar format: 12 digits. Passport format: 1 capital letter + 7 digits.
+            </p>
+            <button type="submit">Submit Request</button>
+        </form>
+    </section>
+</div>
+</body>
+</html>

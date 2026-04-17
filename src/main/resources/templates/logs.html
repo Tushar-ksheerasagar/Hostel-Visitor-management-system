@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Logs</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Visitor Logs</h1>
+        <nav><a th:href="@{/}">Home</a></nav>
+    </header>
+
+    <section class="card">
+        <table>
+            <thead>
+            <tr>
+                <th>Visit ID</th>
+                <th>Visitor</th>
+                <th>Student Room</th>
+                <th>ID Type</th>
+                <th>Status</th>
+                <th>Entry</th>
+                <th>Exit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="visit : ${visits}">
+                <td th:text="${visit.visitId}"></td>
+                <td th:text="${visit.visitor.name}"></td>
+                <td th:text="${visit.student.roomNo}"></td>
+                <td th:text="${visit.idType}"></td>
+                <td th:text="${visit.status}"></td>
+                <td th:text="${visit.entryTime}"></td>
+                <td th:text="${visit.exitTime}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>

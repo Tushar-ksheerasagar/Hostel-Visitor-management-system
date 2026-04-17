@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Summary Reports</h1>
+        <nav><a th:href="@{/}">Home</a></nav>
+    </header>
+
+    <section class="card">
+        <div class="grid">
+            <div class="metric"><strong th:text="${total}">0</strong>Total Visits</div>
+            <div class="metric"><strong th:text="${approved}">0</strong>Approved Visits</div>
+            <div class="metric"><strong th:text="${inside}">0</strong>Inside Hostel</div>
+            <div class="metric"><strong th:text="${closed}">0</strong>Completed Visits</div>
+            <div class="metric"><strong th:text="${invalid}">0</strong>Invalid ID Rejections</div>
+            <div class="metric"><strong th:text="${studentRejected}">0</strong>Student Rejections</div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

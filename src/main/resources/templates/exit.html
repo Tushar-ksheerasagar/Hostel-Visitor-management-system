@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Exit</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Exit Recording</h1>
+        <nav><a th:href="@{/}">Home</a></nav>
+    </header>
+
+    <section class="card">
+        <div th:if="${success}" class="alert success" th:text="${success}"></div>
+        <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Visit ID</th>
+                <th>Visitor</th>
+                <th>Entry Time</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="visit : ${insideVisits}">
+                <td th:text="${visit.visitId}"></td>
+                <td th:text="${visit.visitor.name}"></td>
+                <td th:text="${visit.entryTime}"></td>
+                <td>
+                    <form th:action="@{'/exit/' + ${visit.visitId} + '/record'}" method="post">
+                        <button class="secondary" type="submit">Record Exit</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>
